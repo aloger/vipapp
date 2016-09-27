@@ -1,0 +1,32 @@
+<ion-view>
+    <div class="bar bar-subheader">
+        <h2 class="title">Đăng ký thành công</h2>
+    </div>
+    <ion-content ng-controller="completeCtrl" class="has-header has-subheader">
+        <div class="list">
+            <div class="item item-icon-left">
+            </div>
+            <div class="item item-icon-left">
+                <i class="icon ion-person"></i>Thông tin cá nhân
+            </div>
+            <div class="item">Họ và tên: {{stepOneData[0].LastName}} {{stepOneData[0].FirstName}}</div>
+            <div ng-show="stepOneData[0].Gender==0" class="item">Giới tính: Nam</div>
+            <div ng-show="stepOneData[0].Gender==1" class="item">Giới tính: Nữ</div>
+            <div class="item">Ngày sinh: {{stepTwoData[0].DOB}}</div>
+            <div class="item">CMND/Passport: {{stepOneData[0].IdentityId}}</div>
+            <div class="item">Ngày cấp: {{stepTwoData[0].IdIssuedDate}}</div>
+            <div class="item">Nơi cấp: {{stepOneData[0].IdIssuedBy}}</div>
+
+            <div class="item">Số điện thoại: {{stepTwoData[0].Phone}}</div>
+            <div class="item">Email: {{stepTwoData[0].Email}}</div>
+            <div class="item">Địa chỉ thường trú: {{stepTwoData[0].TempResideantAddress}}</div>
+            <div class="item">Địa chỉ hiện tại: {{stepTwoData[0].TempCurrentAddress}}</div>
+            <div class="item item-icon-left">
+                <i class="icon ion-briefcase"></i>Thông tin nghề nghiệp
+            </div>
+            <div class="item">Cơ quan hiện tại: {{stepTwoData[0].TempSchool}}</div>
+            <div class="item">Chức vụ: {{stepTwoData[0].TempPosition}}</div>
+            <div class="item">Thâm niên: {{stepTwoData[0].YearSeniority}} Năm {{stepTwoData[0].MonthSeniority}} Tháng</div>
+        </div>
+    </ion-content>
+</ion-view>

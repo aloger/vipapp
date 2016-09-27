@@ -1,0 +1,128 @@
+<ion-view>
+    <div class="bar bar-subheader">
+        <h2 class="title">Đăng ký thông tin</h2>
+    </div>
+    <ion-content ng-controller="stepOneCtrl" class="has-header has-subheader">
+        <form name="myForm" novalidate ">
+            <div class="list ">
+                <!--<input type = "file " file-Model = "myFile " multiple/>
+                <button ng-click = "uploadFile() ">upload me</button>
+                <label>{{fileone}}</label>-->
+                <!--<input type="file " value="upload "/>-->
+                <label class="item item-input item-stacked-label ">
+                <span class="input-label "><span class="required ">* </span>Họ và tên đệm:</span>
+                <input type="text " name="LastName " ng-model="LastName " placeholder="Họ và tên đệm " ng-required="true
+            " ng-maxlength="50 " check-Lastname/>
+            </label>
+                <label class="item item-input item-stacked-label ">
+                <span class="input-label "><span class="required ">* </span>Tên:</span>
+                <input type="text " name="FirstName " ng-required="true " ng-maxlength="50 " ng-model="FirstName
+            " placeholder="Tên " check-Firstname/>
+            </label>
+                <label class="item item-input item-select ">
+                <span class="input-label "><span class="required ">* </span>Giới tính:</span>           
+                <select ng-model="Gender " ng-required="true ">
+                    <option ng-repeat="x in gender " ng-app=" " value="{{x.Id}} ">{{x.Name}}</option>
+                </select>
+             </label>
+                <label class="item item-input item-select ">
+                <span class="input-label "><span class="required ">* </span>Chức vụ:</span>           
+                <select ng-model="Position " ng-required="true ">
+                    <option ng-app=" " value="">Chọn chức vụ</option>
+                    <option ng-repeat="position in positions " ng-app=" " value="{{position.Id}} ">{{position.Name}}</option>
+                </select>
+             </label>
+                <label class="item item-input item-stacked-label ">
+                <span class="input-label "><span class="required ">* </span>CMND/Hộ chiếu:</span>
+                <input type="text " name="IdentityId " ng-model="IdentityId "  placeholder="CMND hoặc hộ chiếu
+            " ng-required="true " check-Cmnd/>
+            </label>
+                <label class="item item-input item-stacked-label " ion-datetime-picker  date only-valid="{ 'before':
+            'today', 'inclusive': true} "
+                    ng-model='IdIssuedDate'>
+                <span class="input-label "><span class="required ">* </span>Ngày cấp:</span>
+                <p  class="date " >{{IdIssuedDate| date: "dd-MM-yyyy "}}</p>
+            </label>
+                <label class="item item-input item-stacked-label ">
+                <span class="input-label "><span class="required ">* </span>Nơi cấp:</span>
+                <input type="text " name="IdIssuedBy " ng-model="IdIssuedBy " placeholder="CA.Tỉnh/Thành phố
+            " ng-required="true " ng-maxlength="250 " check-Idissuedby/>
+            </label>
+                <label class="item item-input item-stacked-label " ion-datetime-picker only-valid="{ 'before': 'today',
+            'inclusive': true} "
+                    date ng-model='DOB'>
+                <span class="input-label "><span class="required ">* </span>Ngày sinh:</span>
+                <p class="date ">{{DOB| date: "dd-MM-yyyy "}}</p>         
+            </label>
+
+                <label class="item item-input item-stacked-label">
+                <span class="input-label "><span class="required ">* </span>Đơn vị công tác:</span>
+                <!--<input type="text" placeholder="John">-->
+                <input  ion-autocomplete type="text " placeholder="Nhập vào tên đơn vị công tác " 
+                    readonly="readonly " class="ion-autocomplete " autocomplete="off " 
+                    max-selected-items="1 " 
+                    ng-model="school " 
+                    name="school "
+                    items-method="getTestItems(query) "
+                    item-value-key="Id "
+                    item-view-value-key="Name "
+                    items-clicked-method="itemsClicked(callback) "
+                    items-removed-method="itemsRemoved(callback) "
+                    ng-required="true "
+                    placeholder="Tên trường công tác "
+                    check-School
+                    select-items-label="Chọn trường..."
+                    selected-items-label="Chọn:"
+                    style="display: block;"/>
+            </label>
+
+                <label class="item item-input item-select ">
+                <span class="input-label "><span class="required ">* </span>Thu nhập:</span>
+                <select name="Incomes " ng-model="aboutsalary ">
+                    <option value=" ">Chọn mức lương...</option>
+                    <option value="0-1000000 ">Thấp hơn 1tr</option>
+                    <option value="1000000-3000000 ">Từ 1tr đến 3tr</option>
+                    <option value="3000000-5000000 ">Từ 3tr đến 5tr</option>
+                    <option value="5000000-10000000 ">Từ 5tr đến 10tr</option>
+                    <option value="10000000-15000000 ">Từ 10tr đến 15tr</option>
+                    <option value="15000000-20000000 ">Từ 15tr đến 20tr</option>
+                    <option value="25000000-30000000 ">Từ 25tr đến 30tr</option>
+                    <option value="35000000-50000000 ">Từ 35tr đến 50tr</option>
+                    <option value="50000000-100000000000000000 ">Trên 50tr</option>
+                </select>
+            </label>
+            </div>
+            <div class="padding ">
+                <ul class="error-msgs " ng-messages="myForm.IdentityId.$error ">
+                    <li ng-message="numberValidator ">* CMND không đúng</li>
+                    <li ng-message="cmndValidator ">* CMND có 9 hoặc 12 số</li>
+                </ul>
+                <ul class="error-msgs " ng-messages="myForm.LastName.$error ">
+                    <li ng-message="lastnamerequired ">* Họ và tên lót không được để trống</li>
+                    <li ng-message="lastnamelength ">* Họ và tên lót có tối đa 50 ký tự</li>
+                </ul>
+                <ul class="error-msgs " ng-messages="myForm.FirstName.$error ">
+                    <li ng-message="firstnamerequired ">* Tên không được để trống</li>
+                    <li ng-message="firstnamelength ">* Tên có tối đa 50 ký tự</li>
+                </ul>
+                <ul class="error-msgs " ng-messages="myForm.IdIssuedBy.$error ">
+                    <li ng-message="idissuedbyrequired ">* Nơi cấp không được để trống</li>
+                    <li ng-message="idissuedbylength ">* Nơi cấp có tối đa 250 ký tự</li>
+                </ul>
+                <ul class="error-msgs " ng-messages="myForm.school.$error ">
+                    <li ng-message="schoolrequired ">* Nơi công tác không được để trống</li>
+                </ul>
+                <ul class="error-msgs " ng-messages="myForm.DOB.$error ">
+                    <li ng-message="dobrequired ">* Vui lòng chọn ngày sinh</li>
+                    <li ng-message="doblessthantoday ">* Ngày sinh không được nhỏ hơn ngày hiện tại</li>
+                </ul>
+
+            </div>
+            <div class="col-33 col-offset-33 ">
+                <!--<a href="#/step2 " class="button button-block button-chocolate ">Tiếp tục</a>-->
+                <!--<button class="button button-block button-chocolate " ng-disabled="myForm.$invalid " ng-click="GotoStep2() ">Tiếp tục</button>-->
+                <button class="button button-block button-chocolate " ng-click="GotoStep2() ">Tiếp tục</button>
+            </div>
+        </form>
+    </ion-content>
+</ion-view>
